@@ -28,6 +28,7 @@ public class NotificationDetails {
     private static final String ICON = "icon";
     private static final String PRIORITY = "priority";
     private static final String PLAY_SOUND = "playSound";
+    private static final String LOOP_PLAY_SOUND = "loopPlaySound";
     private static final String SOUND = "sound";
     private static final String ENABLE_VIBRATION = "enableVibration";
     private static final String VIBRATION_PATTERN = "vibrationPattern";
@@ -80,6 +81,7 @@ public class NotificationDetails {
     public Integer importance;
     public Integer priority;
     public Boolean playSound;
+    public Boolean loopPlaySound;
     public String sound;
     public Boolean enableVibration;
     public long[] vibrationPattern;
@@ -142,6 +144,7 @@ public class NotificationDetails {
             notificationDetails.icon = (String) platformChannelSpecifics.get(ICON);
             notificationDetails.priority = (Integer) platformChannelSpecifics.get(PRIORITY);
             notificationDetails.playSound = (Boolean) platformChannelSpecifics.get(PLAY_SOUND);
+            notificationDetails.loopPlaySound = (Boolean) platformChannelSpecifics.get(LOOP_PLAY_SOUND);
             notificationDetails.sound = (String) platformChannelSpecifics.get(SOUND);
             notificationDetails.enableVibration = (Boolean) platformChannelSpecifics.get(ENABLE_VIBRATION);
             notificationDetails.vibrationPattern = (long[]) platformChannelSpecifics.get(VIBRATION_PATTERN);
