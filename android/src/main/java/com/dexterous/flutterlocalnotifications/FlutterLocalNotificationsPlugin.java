@@ -20,6 +20,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 
 import com.dexterous.flutterlocalnotifications.models.NotificationDetails;
 import com.dexterous.flutterlocalnotifications.models.styles.BigPictureStyleInformation;
@@ -461,7 +462,9 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         if (StringUtils.isNullOrEmpty(notificationDetails.sound)) {
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         } else {
-            return Uri.parse(notificationDetails.sound);
+            uri = Uri.parse(notificationDetails.sound);
+            Log.d("FlutterLN", uri.toString() + " from " + notificationDetails.sound);
+            return uri;
         }
         return uri;
     }
