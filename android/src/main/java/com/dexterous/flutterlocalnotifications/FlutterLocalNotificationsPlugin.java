@@ -461,9 +461,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         if (StringUtils.isNullOrEmpty(notificationDetails.sound)) {
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         } else {
-
-            int soundResourceId = context.getResources().getIdentifier(notificationDetails.sound, "raw", context.getPackageName());
-            return Uri.parse("android.resource://" + context.getPackageName() + "/" + soundResourceId);
+            return Uri.parse(notificationDetails.sound);
         }
         return uri;
     }
