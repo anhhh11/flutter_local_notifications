@@ -71,7 +71,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
     private static final String INVALID_ICON_ERROR_CODE = "INVALID_ICON";
     private static final String INVALID_LARGE_ICON_ERROR_CODE = "INVALID_LARGE_ICON";
     private static final String INVALID_BIG_PICTURE_ERROR_CODE = "INVALID_BIG_PICTURE";
-    private static final String INVALID_SOUND_ERROR_CODE = "INVALID_SOUND";
+//    private static final String INVALID_SOUND_ERROR_CODE = "INVALID_SOUND";
     private static final String NOTIFICATION_LAUNCHED_APP = "notificationLaunchedApp";
     private static final String INVALID_DRAWABLE_RESOURCE_ERROR_MESSAGE = "The resource %s could not be found. Please make sure it has been added as a drawable resource to your Android head project.";
     private static final String INVALID_RAW_RESOURCE_ERROR_MESSAGE = "The resource %s could not be found. Please make sure it has been added as a raw resource to your Android head project.";
@@ -634,12 +634,12 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
                 return null;
             }
         }
-        if(!StringUtils.isNullOrEmpty(notificationDetails.sound)) {
-            int soundResourceId = registrar.context().getResources().getIdentifier(notificationDetails.sound, "raw", registrar.context().getPackageName());
-            if(soundResourceId == 0) {
-                result.error(INVALID_SOUND_ERROR_CODE, INVALID_RAW_RESOURCE_ERROR_MESSAGE, null);
-            }
-        }
+//        if(!StringUtils.isNullOrEmpty(notificationDetails.sound)) {
+//            int soundResourceId = registrar.context().getResources().getIdentifier(notificationDetails.sound, "raw", registrar.context().getPackageName());
+//            if(soundResourceId == 0) {
+//                result.error(INVALID_SOUND_ERROR_CODE, INVALID_RAW_RESOURCE_ERROR_MESSAGE, null);
+//            }
+//        }
 
         return notificationDetails;
     }
