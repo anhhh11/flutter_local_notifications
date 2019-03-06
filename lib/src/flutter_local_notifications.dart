@@ -3,9 +3,6 @@ part of flutter_local_notifications;
 /// Signature of callback passed to [initialize]. Callback triggered when user taps on a notification
 typedef Future<dynamic> SelectNotificationCallback(String payload);
 
-/// The available intervals for periodically showing notifications
-enum RepeatInterval { EveryMinute, Hourly, Daily, Weekly }
-
 /// The days of the week
 class Day {
   static const Sunday = const Day(1);
@@ -141,7 +138,7 @@ class FlutterLocalNotificationsPlugin {
   /// Periodically show a notification using the specified interval.
   /// For example, specifying a hourly interval means the first time the notification will be an hour after the method has been called and then every hour after that.
   Future periodicallyShow(int id, DateTime dateTime, String title, String body,
-      RepeatInterval repeatInterval, NotificationDetails notificationDetails,
+      repeatInterval, NotificationDetails notificationDetails,
       {String payload}) async {
     _validateId(id);
     var serializedPlatformSpecifics =
@@ -151,7 +148,7 @@ class FlutterLocalNotificationsPlugin {
       'title': title,
       'body': body,
       'calledAt': dateTime.millisecondsSinceEpoch,
-      'repeatInterval': repeatInterval.index,
+      'repeatInterval': repeatInterval,
       'platformSpecifics': serializedPlatformSpecifics,
       'payload': payload ?? ''
     });
@@ -169,7 +166,7 @@ class FlutterLocalNotificationsPlugin {
       'title': title,
       'body': body,
       'calledAt': new DateTime.now().millisecondsSinceEpoch,
-      'repeatInterval': RepeatInterval.Daily.index,
+      'repeatInterval': 60000 * 60 * 24,
       'repeatTime': notificationTime.toMap(),
       'platformSpecifics': serializedPlatformSpecifics,
       'payload': payload ?? ''
@@ -188,7 +185,7 @@ class FlutterLocalNotificationsPlugin {
       'title': title,
       'body': body,
       'calledAt': new DateTime.now().millisecondsSinceEpoch,
-      'repeatInterval': RepeatInterval.Weekly.index,
+      'repeatInterval': 60000 * 60 * 24 * 7,
       'repeatTime': notificationTime.toMap(),
       'day': day.value,
       'platformSpecifics': serializedPlatformSpecifics,

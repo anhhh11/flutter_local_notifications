@@ -99,7 +99,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         ArrayList<NotificationDetails> scheduledNotifications = loadScheduledNotifications(context);
         for (Iterator<NotificationDetails> it = scheduledNotifications.iterator(); it.hasNext(); ) {
             NotificationDetails scheduledNotification = it.next();
-            if (scheduledNotification.repeatInterval == null) {
+            if (scheduledNotification.repeatInterval == 0) {
                 scheduleNotification(context, scheduledNotification, false);
             } else {
                 repeatNotification(context, scheduledNotification, false);
@@ -230,24 +230,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationDetails.id, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = getAlarmManager(context);
-        long repeatInterval = 0;
-        switch (notificationDetails.repeatInterval) {
-            case EveryMinute:
-                repeatInterval = 60000;
-                break;
-            case Hourly:
-                repeatInterval = 60000 * 60;
-                break;
-            case Daily:
-                repeatInterval = 60000 * 60 * 24;
-                break;
-            case Weekly:
-                repeatInterval = 60000 * 60 * 24 * 7;
-                break;
-            default:
-                break;
-        }
-
+        long repeatInterval = notificationDetails.repeatInterval;
         long startTimeMilliseconds = notificationDetails.calledAt;
         if (notificationDetails.repeatTime != null) {
             Calendar calendar = Calendar.getInstance();
