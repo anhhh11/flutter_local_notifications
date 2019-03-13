@@ -312,21 +312,8 @@ typedef NS_ENUM(NSInteger, RepeatInterval) {
     if(notificationDetails.secondsSinceEpoch == nil) {
         NSTimeInterval timeInterval = 0.1;
         Boolean repeats = NO;
-        if(notificationDetails.repeatInterval != nil) {
-            switch([notificationDetails.repeatInterval integerValue]) {
-                case EveryMinute:
-                    timeInterval = 60;
-                    break;
-                case Hourly:
-                    timeInterval = 60 * 60;
-                    break;
-                case Daily:
-                    timeInterval = 60 * 60 * 24;
-                    break;
-                case Weekly:
-                    timeInterval = 60 * 60 * 24 * 7;
-                    break;
-            }
+        if(notificationDetails.repeatInterval != 0) {
+            timeInterval = [notificationDetails.repeatInterval integerValue];
             repeats = YES;
         }
         if (notificationDetails.repeatTime != nil) {
