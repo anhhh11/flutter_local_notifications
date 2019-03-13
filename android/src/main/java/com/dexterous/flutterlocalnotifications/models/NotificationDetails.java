@@ -86,7 +86,7 @@ public class NotificationDetails {
     public long[] vibrationPattern;
     public NotificationStyle style;
     public StyleInformation styleInformation;
-    public long repeatInterval;
+    public int repeatInterval;
     public Time repeatTime;
     public Long millisecondsSinceEpoch;
     public Long calledAt;
@@ -123,7 +123,7 @@ public class NotificationDetails {
             notificationDetails.calledAt = (Long) arguments.get(CALLED_AT);
         }
         if (arguments.containsKey(REPEAT_INTERVAL)) {
-            notificationDetails.repeatInterval = (Long) arguments.get(REPEAT_INTERVAL);
+            notificationDetails.repeatInterval = (int) arguments.get(REPEAT_INTERVAL);
         }
         if (arguments.containsKey(REPEAT_TIME)) {
             @SuppressWarnings("unchecked")
