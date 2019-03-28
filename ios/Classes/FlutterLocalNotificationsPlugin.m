@@ -312,8 +312,8 @@ typedef NS_ENUM(NSInteger, RepeatInterval) {
     if(notificationDetails.secondsSinceEpoch == nil) {
         NSTimeInterval timeInterval = 0.1;
         Boolean repeats = NO;
-        if(notificationDetails.repeatInterval != 0) {
-            timeInterval = [notificationDetails.repeatInterval integerValue];
+        if(notificationDetails.repeatInterval != nil) {
+            timeInterval = [notificationDetails.repeatInterval integerValue] / 1000;
             repeats = YES;
         }
         if (notificationDetails.repeatTime != nil) {
