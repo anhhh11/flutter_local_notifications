@@ -373,24 +373,11 @@ typedef NS_ENUM(NSInteger, RepeatInterval) {
         if(notificationDetails.repeatInterval != nil) {
             NSTimeInterval timeInterval = 0;
             
-            switch([notificationDetails.repeatInterval integerValue]) {
-                case EveryMinute:
-                    timeInterval = 60;
-                    notification.repeatInterval = NSCalendarUnitMinute;
-                    break;
-                case Hourly:
-                    timeInterval = 60 * 60;
-                    notification.repeatInterval = NSCalendarUnitHour;
-                    break;
-                case Daily:
-                    timeInterval = 60 * 60 * 24;
-                    notification.repeatInterval = NSCalendarUnitDay;
-                    break;
-                case Weekly:
-                    timeInterval = 60 * 60 * 24 * 7;
-                    notification.repeatInterval = NSCalendarUnitWeekOfYear;
-                    break;
+            if(notificationDetails.repeatInterval != nil) {
+                timeInterval = [notificationDetails.repeatInterval integerValue] / 1000;
+                notification.repeatInterval = NSCalendarUnitMinute;
             }
+            
             if (notificationDetails.repeatTime != nil) {
                 NSDate *now = [NSDate date];
                 NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
